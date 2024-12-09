@@ -1,0 +1,3 @@
+[submodule "fullstack-k8s"]
+	path = fullstack-k8s
+	url = https://gitlab.flux.utah.edu/powder-mirror/openairinterface5g
