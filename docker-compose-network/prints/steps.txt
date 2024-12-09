@@ -1,0 +1,50 @@
+1st step: Download updated images
+  docker login
+
+  docker pull mysql:8.0
+  docker pull oaisoftwarealliance/oai-amf:v2.0.0
+  docker pull oaisoftwarealliance/oai-smf:v2.0.0
+  docker pull oaisoftwarealliance/oai-upf:v2.0.0
+  docker pull oaisoftwarealliance/trf-gen-cn5g:focal
+
+  docker pull oaisoftwarealliance/oai-gnb:develop
+  docker pull oaisoftwarealliance/oai-nr-ue:develop
+
+  docker logout
+
+2nd step: Deploy network
+
+docker-compose up -d mysql oai-nrf oai-amf oai-smf oai-spgwu oai-ext-dn
+
+I had to run it with sudo instead
+change the variables in docker-compose.yml
+services.mysql.image to mysql:5.7
+services.mysql.healthcheck.retries to 5
+
+3rd step: check status
+
+Problem in the mysql-healthcheck.sh with LF and CRLF
+
+docker-compose ps -a 
+
+4st step: ifconfig
+
+5th step: OAI gNB in RF simulator mode and in Standalone Mode
+
+6th step: Deploy OAI NR-UE in RF simulator mode and in Standalone Mode
+
+on docker-compose.yaml ih had to remove the flag --sa because it is not used anymore
+i removed it from services.oai-nr-ue.environment.USE_ADDITIONAL_OPTIONS
+and from services.oai-nr-ue2.environment.USE_ADDITIONAL_OPTIONS
+
+7th step: Making sure the OAI UE is connected:
+
+8th step: 3.1. Check your Internet connectivity
+
+9th step: Start the iperf server inside the NR-UE container
+the command did not work iperf -B 12.1.1.2 -u -i 1 -s 
+i ran the command ip addr show and realized that the ip address was 12.1.1.4 instead
+
+10th step: Start the iperf client inside the ext-dn container
+
+11th step: Undeploy
