@@ -15,3 +15,5 @@ The goal is to deploy a full-stack application (frontend, backend, and database)
 ### Task 2: Mobile Network Emulator with Docker Compose
 This task involves setting up a mobile network emulator using Docker Compose. Updated Docker images from the appropriate repositories are used, with modifications made to address compatibility issues.
 
+## Report
+A detailed report documenting the deployment steps, troubleshooting, and results is available in this repository. Screenshots and explanations are included to provide further insights into the implementation.
